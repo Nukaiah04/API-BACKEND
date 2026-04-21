@@ -1,16 +1,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# ✅ Copy only csproj first
-COPY API-BACKEND.csproj ./
-
-RUN dotnet restore
-
-# ✅ Copy remaining files
+# ✅ Copy everything (important)
 COPY . .
 
-RUN dotnet publish -c Release -o /app/out
+# ✅ Restore using explicit project file
+RUN dotnet restore "API-BACKEND.csproj"
 
+# ✅ Publish
+RUN dotnet publish "API-BACKEND.csproj" -c Release -o /app/out
+
+# Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
