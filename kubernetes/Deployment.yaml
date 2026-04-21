@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: API-BACKEND-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: API-BACKEND-api
+  template:
+    metadata:
+      labels:
+        app: API-BACKEND-api
+    spec:
+      containers:
+        - name: API-BACKEND-api
+          image: nukaiah04/users-api:latest
+          ports:
+            - containerPort: 80
