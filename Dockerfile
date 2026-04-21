@@ -3,11 +3,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN ls -R   # 🔥 VERY IMPORTANT DEBUG
-
-# 👉 CHANGE this to your real folder name
-WORKDIR /app/API-BACKEND
-
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/out
 
